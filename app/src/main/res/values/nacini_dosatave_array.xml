@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="naciniDostave">
+        <item>"Pošta"</item>
+        <item>"Post Express"</item>
+        <item>"Bex"</item>
+        <item>"Aks"</item>
+    </string-array>
+</resources>

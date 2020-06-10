@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+
+    <ImageView
+        android:id="@+id/slika"
+        android:layout_width="130dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/naslov"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/slika"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Naslov artikla" />
+
+    <TextView
+        android:id="@+id/proizvodjac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Proizvodjac:  "
+        app:layout_constraintStart_toEndOf="@+id/slika"
+        app:layout_constraintTop_toBottomOf="@+id/naslov" />
+
+    <TextView
+        android:id="@+id/cenaTw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cena:"
+        app:layout_constraintEnd_toEndOf="@+id/cena"
+        app:layout_constraintStart_toStartOf="@+id/cena"
+        app:layout_constraintTop_toTopOf="@+id/btnDodajUKorpu" />
+
+    <TextView
+        android:id="@+id/cena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00.00"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/slika"
+        app:layout_constraintTop_toBottomOf="@+id/cenaTw" />
+
+    <Button
+        android:id="@+id/btnDodajUKorpu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dodaj u Korpu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/seekBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cena" />
+</androidx.constraintlayout.widget.ConstraintLayout>
