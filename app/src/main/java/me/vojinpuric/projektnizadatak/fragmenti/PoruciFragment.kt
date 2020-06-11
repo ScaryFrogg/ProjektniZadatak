@@ -1,23 +1,19 @@
 package me.vojinpuric.projektnizadatak.fragmenti
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.core.os.bundleOf
 import kotlinx.android.synthetic.main.fragment_poruci.*
 import me.vojinpuric.projektnizadatak.R
 import me.vojinpuric.projektnizadatak.model.Korisnik
 
-//Постоји страна где се потврђује корпа, на овој страни има могућност да се одабере да ли
-//је ово потребно доставити на другу адресу која се разликује од оне почетно унете.
-//Након коринсникове сагласноти излази дијалог прозор са информацијама на коју адресу стиже
-//испорука, колико дана је потребно да стигне и колико је коначна цена поруџбине.
-
 class PoruciFragment : Fragment() {
-    private var ukupnaCena: Double = 0.0
+    private var ukupnaCena = 0.0
+    private var danaDoDostave = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,15 +27,27 @@ class PoruciFragment : Fragment() {
         adresa.setText(Korisnik.adresa)
 
         //ukupna cena
-        //TODO dohvatanje cene
+        ukupnaCena = Korisnik.korpa.keys.map { it.cena * Korisnik.korpa[it]!! }.sum()
+        tvUkupnaCena.text = ukupnaCena.toString()
 
-
+        danaDoDostave = Korisnik.korpa.keys.maxBy { it.isporuka }!!.isporuka
+        isporuka.text = danaDoDostave.toString()
 
         // listener za radio buttone
-        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                usporena.id -> ukupnaCena *= 0.9
-                ubrzana.id -> ukupnaCena *= 1.2
+                usporena.id -> {
+                    isporuka.text = (danaDoDostave+2).toString()
+                    tvUkupnaCena.text = (ukupnaCena * 0.9).toString()
+                }
+                ubrzana.id -> {
+                    isporuka.text= if(danaDoDostave-1<2) "1" else (danaDoDostave-1).toString()
+                    tvUkupnaCena.text = (ukupnaCena * 1.2).toString()
+                }
+                else -> {
+                    isporuka.text=danaDoDostave.toString()
+                    tvUkupnaCena.text = ukupnaCena.toString()
+                }
             }
         }
 
@@ -54,8 +62,22 @@ class PoruciFragment : Fragment() {
         }
 
         btnPotvrdi.setOnClickListener {
-            Korisnik.adresa=adresa.text.toString()
-            //TODO dialog za potvrdu
+            Korisnik.adresa = adresa.text.toString()
+            val builder = AlertDialog.Builder(context)
+            with(builder)
+            {
+                setTitle("Uspesna kupovina")
+                setMessage("""
+                    Vaš račun je ${tvUkupnaCena.text}
+                    Predmeti će biti dostavljeni za ${isporuka.text} dana na adresu ${adresa.text}
+                """.trimIndent())
+                setNeutralButton("Ok") { _, _-> }
+                show()
+            }
         }
+    }
+
+    companion object {
+        fun newInstance() = PoruciFragment()
     }
 }

@@ -35,8 +35,11 @@ class MainActivity : AppCompatActivity() {
         openFragment(LoginFragment.newInstance())
     }
 
-    private fun openFragment(fragment: Fragment) {
+    fun openFragment(fragment: Fragment ,data:Bundle? = null) {
         val transaction = supportFragmentManager.beginTransaction()
+        data?.let {
+            fragment.arguments=it
+        }
         transaction.replace(R.id.frame, fragment)
         transaction.addToBackStack(null)
         transaction.commit()

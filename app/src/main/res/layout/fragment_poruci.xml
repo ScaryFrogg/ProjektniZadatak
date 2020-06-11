@@ -56,13 +56,13 @@
         android:text="Cena: "
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/ukupnaCena"
+        app:layout_constraintBottom_toBottomOf="@+id/tvUkupnaCena"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/ukupnaCena"
+        android:id="@+id/tvUkupnaCena"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -71,6 +71,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dana potrebno za isporuku: "
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/isporuka"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/isporuka"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvUkupnaCena"
+        app:layout_constraintStart_toEndOf="@+id/textView8" />
 
     <Button
         android:id="@+id/btnPotvrdi"
@@ -101,6 +119,7 @@
             android:id="@+id/standardna"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="Standardna isporuka" />
 
         <RadioButton

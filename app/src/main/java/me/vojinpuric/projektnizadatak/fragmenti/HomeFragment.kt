@@ -6,11 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_home.*
-import me.vojinpuric.projektnizadatak.ProizvodListAdapter
+import me.vojinpuric.projektnizadatak.MainActivity
+import me.vojinpuric.projektnizadatak.helpers.ProizvodListAdapter
 import me.vojinpuric.projektnizadatak.R
 import me.vojinpuric.projektnizadatak.model.DatabaseHandler
 import me.vojinpuric.projektnizadatak.model.Proizvod
@@ -31,12 +31,21 @@ class HomeFragment : Fragment() {
         val databaseHandler = DatabaseHandler(requireContext())
 
         val proizvodi: List<Proizvod> = databaseHandler.ocitajProizvode()
-
-        recycler.layoutManager = LinearLayoutManager(context)
-        recycler.adapter = ProizvodListAdapter(proizvodi, requireContext())
-        proizvodi.forEach{
-            Log.e("Proizvod",it.naziv)
+        val otvoriProizvodListener = object : ProizvodListAdapter.OtvoriProizvodListener {
+            override fun otvoriProizvod(id: Int): Boolean {
+                val data = bundleOf("id" to id)
+                (activity as MainActivity).openFragment(ProizvodFragment.newInstance(), data)
+                return true
+            }
         }
+        recycler.layoutManager = LinearLayoutManager(context)
+        recycler.adapter =
+            ProizvodListAdapter(
+                proizvodi,
+                requireContext(),
+                otvoriProizvodListener
+            )
+
     }
 
     companion object {
