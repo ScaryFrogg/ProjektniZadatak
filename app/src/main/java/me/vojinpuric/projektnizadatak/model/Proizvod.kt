@@ -7,6 +7,7 @@ data class Proizvod(
     var stanje: Int,
     val opis: String,
     var isporuka: Int,
+    val drzava : String,
     var cena: Double
 ) {
 }

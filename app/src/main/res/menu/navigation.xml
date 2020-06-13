@@ -10,5 +10,9 @@
      android:id="@+id/navigation_cart"
      android:icon="@drawable/ic_shopping_cart"
      android:title="Korpa"/>
+    <item
+     android:id="@+id/navigation_add"
+     android:icon="@drawable/ic_add"
+     android:title="Dodaj Proizvod"/>
 
 </menu>

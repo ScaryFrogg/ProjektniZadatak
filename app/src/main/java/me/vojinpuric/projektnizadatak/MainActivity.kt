@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
+import me.vojinpuric.projektnizadatak.fragmenti.DodajProizvodFragment
 import me.vojinpuric.projektnizadatak.fragmenti.HomeFragment
 import me.vojinpuric.projektnizadatak.fragmenti.KorpaFragment
 import me.vojinpuric.projektnizadatak.fragmenti.LoginFragment
@@ -26,6 +27,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_cart -> {
                     bar.title = "Korpa"
                     openFragment(KorpaFragment.newInstance())
+                    true
+                }
+                R.id.navigation_add -> {
+                    bar.title = "Novi Proizvod"
+                    openFragment(DodajProizvodFragment.newInstance())
                     true
                 }
                 else -> false

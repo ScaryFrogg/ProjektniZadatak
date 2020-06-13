@@ -39,12 +39,15 @@ class ProizvodListAdapter(val lista: List<Proizvod>,val context: Context ,val ot
             val editText = dialogLayout.findViewById<TextView>(R.id.editText)
             builder.setView(dialogLayout as View)
 
-            builder.setPositiveButton("Dodaj") { _, i ->
+            builder.setPositiveButton("Dodaj") { _, _ ->
                 Korisnik.korpa[proizvod] = editText.text.toString().toInt()
             }
             builder.show()
         }
         holder.itemView.setOnLongClickListener {
+            otvoriProizvodListener.izmeniProizvod(proizvod.id)
+        }
+        holder.itemView.setOnClickListener {
             otvoriProizvodListener.otvoriProizvod(proizvod.id)
         }
     }
@@ -58,6 +61,7 @@ class ProizvodListAdapter(val lista: List<Proizvod>,val context: Context ,val ot
     }
     interface OtvoriProizvodListener{
         fun otvoriProizvod(id :Int) :Boolean
+        fun izmeniProizvod(id : Int):Boolean
     }
 }
 

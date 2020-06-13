@@ -32,13 +32,14 @@ class DatabaseHandler(context: Context) :
             return null
         }
         cursor.moveToFirst()
-        val p =Proizvod(
+        val p = Proizvod(
             cursor.getInt(cursor.getColumnIndex(KEY_ID)),
             cursor.getString(cursor.getColumnIndex(KEY_NAZIV)),
             cursor.getString(cursor.getColumnIndex(KEY_SLIKA)),
             cursor.getInt(cursor.getColumnIndex(KEY_STANJE)),
             cursor.getString(cursor.getColumnIndex(KEY_OPIS)),
             cursor.getInt(cursor.getColumnIndex(KEY_ISPORUKA)),
+            cursor.getString(cursor.getColumnIndex(KEY_DRZAVA)),
             cursor.getDouble(cursor.getColumnIndex(KEY_CENA))
         )
         cursor.close()
@@ -65,6 +66,7 @@ class DatabaseHandler(context: Context) :
                         cursor.getInt(cursor.getColumnIndex(KEY_STANJE)),
                         cursor.getString(cursor.getColumnIndex(KEY_OPIS)),
                         cursor.getInt(cursor.getColumnIndex(KEY_ISPORUKA)),
+                        cursor.getString(cursor.getColumnIndex(KEY_DRZAVA)),
                         cursor.getDouble(cursor.getColumnIndex(KEY_CENA))
                     )
                 )
@@ -89,11 +91,17 @@ class DatabaseHandler(context: Context) :
             put(KEY_STANJE, proizvod.stanje)
             put(KEY_OPIS, proizvod.opis)
             put(KEY_SLIKA, proizvod.slika)
+            put(KEY_DRZAVA, proizvod.drzava)
             put(KEY_ISPORUKA, proizvod.isporuka)
         }
 
         db.insert(TABLE_PROIZVODI, null, values)
 
+    }
+
+    fun updateProizvod(id: Int, values: ContentValues) {
+        val db = this.writableDatabase
+        db.update(TABLE_PROIZVODI,values,"$KEY_ID = $id",null)
     }
 
     private fun predefinisaniProizvodi(db: SQLiteDatabase) {
@@ -105,6 +113,7 @@ class DatabaseHandler(context: Context) :
                 3,
                 "Dijagonala:27\nTip panela:IPS\nRezolucija:1920 x 1080 Full HD\nVreme odziva:8msn\nOdnos stranica:16 : 9",
                 2,
+                "Srbija",
                 27_999.99
             ), db
         )
@@ -116,12 +125,13 @@ class DatabaseHandler(context: Context) :
                 2,
                 "Dijagonala ekrana:6.5\nRAM memorija:4 GB\nInterna memorija:128 GB\nZadnja kamera:48 Mpix + 2 Mpix\nKapacitet baterije:3750 mAh",
                 3,
+                "Madjarksa",
                 24_999.99
             ), db
         )
     }
 
     private fun kreirajTabeluProizvoda() = ("CREATE TABLE " + TABLE_PROIZVODI + "("
-            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAZIV + " TEXT," + KEY_CENA + " REAL," + KEY_SLIKA + " TEXT," + KEY_ISPORUKA + " INTEGER," + KEY_STANJE + " INTEGER," + KEY_OPIS + " TEXT" + ")")
+            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAZIV + " TEXT," + KEY_CENA + " REAL," + KEY_SLIKA + " TEXT,"+ KEY_DRZAVA + " TEXT," + KEY_ISPORUKA + " INTEGER," + KEY_STANJE + " INTEGER," + KEY_OPIS + " TEXT" + ")")
 
 }

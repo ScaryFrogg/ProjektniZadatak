@@ -37,6 +37,12 @@ class HomeFragment : Fragment() {
                 (activity as MainActivity).openFragment(ProizvodFragment.newInstance(), data)
                 return true
             }
+
+            override fun izmeniProizvod(id: Int): Boolean {
+                val data = bundleOf("id" to id)
+                (activity as MainActivity).openFragment(IzmeniFragment.newInstance(), data)
+                return true
+            }
         }
         recycler.layoutManager = LinearLayoutManager(context)
         recycler.adapter =

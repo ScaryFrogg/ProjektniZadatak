@@ -21,21 +21,14 @@
         android:id="@+id/naslov"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="17sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cenaTw"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/slika"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="Naslov artikla" />
-
-    <TextView
-        android:id="@+id/proizvodjac"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Proizvodjac:  "
-        app:layout_constraintStart_toEndOf="@+id/slika"
-        app:layout_constraintTop_toBottomOf="@+id/naslov" />
 
     <TextView
         android:id="@+id/cenaTw"
@@ -52,6 +45,7 @@
         android:layout_height="wrap_content"
         android:text="00.00"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnDodajUKorpu"
         app:layout_constraintStart_toEndOf="@+id/slika"
         app:layout_constraintTop_toBottomOf="@+id/cenaTw" />
 

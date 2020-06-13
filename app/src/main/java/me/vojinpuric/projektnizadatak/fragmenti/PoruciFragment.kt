@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.fragment_poruci.*
 import me.vojinpuric.projektnizadatak.R
 import me.vojinpuric.projektnizadatak.model.Korisnik
+import java.util.*
 
 class PoruciFragment : Fragment() {
     private var ukupnaCena = 0.0
@@ -30,7 +31,12 @@ class PoruciFragment : Fragment() {
         ukupnaCena = Korisnik.korpa.keys.map { it.cena * Korisnik.korpa[it]!! }.sum()
         tvUkupnaCena.text = ukupnaCena.toString()
 
-        danaDoDostave = Korisnik.korpa.keys.maxBy { it.isporuka }!!.isporuka
+        val prozvodZaIsporuku = Korisnik.korpa.keys.maxBy { if (it.drzava == Korisnik.drzava) {it.isporuka}else {it.isporuka+1}  }
+        danaDoDostave = if(prozvodZaIsporuku!!.drzava == Korisnik.drzava){
+            prozvodZaIsporuku.isporuka
+        }else {
+            prozvodZaIsporuku.isporuka+1
+        }
         isporuka.text = danaDoDostave.toString()
 
         // listener za radio buttone

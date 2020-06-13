@@ -93,7 +93,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/drzava"
+        app:layout_constraintBottom_toTopOf="@+id/drzavap"
         app:layout_constraintEnd_toEndOf="@+id/email"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
@@ -104,13 +104,13 @@
         android:text="Država"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/drzava"
-        app:layout_constraintEnd_toStartOf="@+id/drzava"
+        app:layout_constraintBaseline_toBaselineOf="@+id/drzavap"
+        app:layout_constraintEnd_toStartOf="@+id/drzavap"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/drzava"
+        android:id="@+id/drzavap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

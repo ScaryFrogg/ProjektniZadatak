@@ -25,12 +25,12 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btnNastavi.setOnClickListener {
-            if (ime.text.isNotBlank() && prezime.text.isNotBlank() && email.text.isNotBlank() && adresa.text.isNotBlank() && drzava.text.isNotBlank()){
+            if (ime.text.isNotBlank() && prezime.text.isNotBlank() && email.text.isNotBlank() && adresa.text.isNotBlank() && drzavap.text.isNotBlank()){
                 Korisnik.ime= ime.text.toString()
                 Korisnik.prezime= prezime.text.toString()
                 Korisnik.email= email.text.toString()
                 Korisnik.adresa= adresa.text.toString()
-                Korisnik.drzava= drzava.text.toString()
+                Korisnik.drzava= drzavap.text.toString()
 
                 (activity as MainActivity).logIn()
             }else{
